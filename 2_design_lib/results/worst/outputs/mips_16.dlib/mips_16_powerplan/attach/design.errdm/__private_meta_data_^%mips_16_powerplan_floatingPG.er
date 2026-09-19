@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<errorData typeCount="7" majorVersion="1" minorVersion="8" name="__private_meta_data_:mips_16_powerplan_floatingPG.err" designName="mips_16_powerplan" info="" checker="check_pg_connectivity" checkerVersion="" created="1787946753" createdDate="08:29:2026:03:52:33:CST" modified="1787946761" modifiedDate="08:29:2026:03:52:41:CST" interactive="false" internal="false" metaData="true" numTypes="7" numInsts="29624"/>

@@ -1,0 +1,62 @@
+****************************************
+Report : corner
+Design : mips_16
+Version: O-2018.06-SP1
+Date   : Sat Aug 29 01:27:41 2026
+****************************************
+
+--------------------------------------------------------------------------------
+Corner default
+--------------------------------------------------------------------------------
+
+Current: true  Default: true  Empty: false
+
+Scenarios associated with this corner:
+
+                                                         Leakage   Dynamic
+Scenario            Mode            Active  Setup  Hold  Power     Power     Max_tran  Max_cap  Min_cap  Cell_em  Signal_em
+-------------------------------------------------------------------------------------------------------------------------
+default             default         true    true   true  false     false     false     false    false    false    false
+
+
+Top-Level PVT Settings:
+  early process label             (none)
+  early process number            1
+  early voltage                   0.70
+    source                        default
+    file/line                     --
+  early temperature               125.00
+    source                        default
+    file/line                     --
+
+  late process label              (none)
+  late process number             1
+  late voltage                    0.70
+    source                        default
+    file/line                     --
+  late temperature                125.00
+    source                        default
+    file/line                     --
+
+
+
+
+0 objects with explicit PVT settings.
+
+
+Top-level cell timing derates:
+ data_cell derate early:   rise: 1.00    fall: 1.00  
+ clk_cell derate early:   rise: 1.00    fall: 1.00  
+ cell_check derate early:   rise: 1.00    fall: 1.00  
+ data_cell derate  late:   rise: 1.00    fall: 1.00  
+ clk_cell derate  late:   rise: 1.00    fall: 1.00  
+ cell_check derate  late:   rise: 1.00    fall: 1.00  
+
+Global net timing derates:
+ net_data, early:   rise: 1.00    fall: 1.00  
+ net_data, late:   rise: 1.00    fall: 1.00  
+ net_clock, early:   rise: 1.00    fall: 1.00  
+ net_clock, late:   rise: 1.00    fall: 1.00  
+
+
+1
