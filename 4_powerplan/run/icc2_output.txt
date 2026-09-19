@@ -1,0 +1,317 @@
+
+Loading user preference file /home/ICer/.synopsys_icc2_gui/preferences.tcl
+icc2_shell> #########################setup#########################
+icc2_shell> 
+icc2_shell> set project_dir "/mnt/hgfs/VM_shared/ITI/ASIC_mips_16"
+/mnt/hgfs/VM_shared/ITI/ASIC_mips_16
+icc2_shell> set lib_path "/home/ICer/Downloads/Lib"
+/home/ICer/Downloads/Lib
+icc2_shell> set dlib_dir "/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/pnr/2_design_lib/results/worst/outputs"
+/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/pnr/2_design_lib/results/worst/outputs
+icc2_shell> set design "mips_16"
+mips_16
+icc2_shell> 
+icc2_shell> set prev_stage    "floorplan"
+floorplan
+icc2_shell> set current_stage "powerplan"
+powerplan
+icc2_shell> 
+icc2_shell> ########################open########################
+icc2_shell> 
+icc2_shell> open_block ${dlib_dir}/${design}.dlib:${design}_${prev_stage}.design
+Information: User units loaded from library 'saed90nm_max_hvt' (LNK-040)
+Opening block 'mips_16.dlib:mips_16_floorplan.design' in edit mode
+{mips_16.dlib:mips_16_floorplan.design}
+icc2_shell> copy_block -from_block ${design}.dlib:${design}_${prev_stage}.design -to_block ${design}_${current_stage}.design
+Information: Overwriting block 'mips_16_powerplan.design' in library 'mips_16.dlib'. (DES-025)
+{mips_16.dlib:mips_16_powerplan.design}
+icc2_shell> current_block ${design}_${current_stage}.design
+{mips_16.dlib:mips_16_powerplan.design}
+icc2_shell> start_gui
+Begin building search trees for block mips_16.dlib:mips_16_powerplan.design
+Done building search trees for block mips_16.dlib:mips_16_powerplan.design (time 0s)
+icc2_shell> link_block
+Using libraries: mips_16.dlib saed90nm_max_hvt
+Warning: In library mips_16.dlib, no block views exist for block mips_16. (LNK-064)
+Visiting block mips_16.dlib:mips_16_powerplan.design
+Design 'mips_16' was successfully linked.
+1
+icc2_shell> #############################initialize########################
+icc2_shell> remove_pg_via_master_rules     -all
+No via def rule is found.
+icc2_shell> remove_pg_patterns             -all
+No pattern is found.
+icc2_shell> remove_pg_strategies           -all
+All strategies have been removed.
+icc2_shell> remove_pg_strategy             -all
+All strategy via rules have been removed.
+icc2_shell> ##########################powerplan########################
+icc2_shell> set roffset 1
+1
+icc2_shell> set rhorz_layer M9
+M9
+icc2_shell> set rvert_layer M8
+M8
+icc2_shell> set rhorz_width 3
+3
+icc2_shell> set rvert_width 3
+3
+icc2_shell> set rhorz_spacing 4
+4
+icc2_shell> set rvert_spacing 4
+4
+icc2_shell> set rstrategy_name "core_ring"
+core_ring
+icc2_shell> #########################ring########################
+icc2_shell> create_pg_region power_ring_region -core -expand_by_edge                                   " {{side : 1} {offset : ${roffset}}}
+                                    {{side : 2} {offset : ${roffset}}}
+                                    {{side : 3} {offset : ${roffset}}}
+                                    {{side : 4} {offset : ${roffset}}}"
+Define region based on core area.
+Expanding the region by: 
+{Horizontal offset: 0.000} {Vertical offset: 0.000} {Edge ID: 1 offset: 1.000} {Edge ID: 2 offset: 1.000} {Edge ID: 3 offset: 1.000} {Edge ID: 4 offset: 1.000} 
+Create region power_ring_region
+{power_ring_region}
+icc2_shell> #"
+icc2_shell> create_pg_ring_pattern ring_pattern -horizontal_layer ${rhorz_layer} -vertical_layer ${rvert_layer}                                    -horizontal_width ${rhorz_width} -vertical_width ${rvert_width}                                     -horizontal_spacing ${rhorz_spacing} -vertical_spacing ${rvert_spacing}
+Successfully create PG ring pattern ring_pattern.
+icc2_shell> set_pg_strategy ${rstrategy_name}     -pg_regions {power_ring_region}     -pattern {{name : ring_pattern} {nets : {VDD VSS}}}
+Successfully set PG strategy core_ring.
+icc2_shell> compile_pg -strategies ${rstrategy_name}
+Sanity check for inputs.
+No strategy-level via rule is specified, the default rule will be applied.
+Automatic PG net connection through connect_pg_net is disabled.
+Loading library and design information.
+Updating PG strategies.
+Updating strategy core_ring.
+Number of Standard Cells: 0
+Number of Hard Macros: 0
+Number of Pads: 0
+Creating rings.
+Creating via connection between strategies and existing shapes.
+Via DRC checking runtime 0.00 seconds.
+via connection runtime: 0 seconds.
+Removing dangling/floating wire/vias after DRC check.
+Start iteration 1:
+Checking potential dangling/floating power plan wires.
+Checking dangling/floating vias inside strategy core_ring.
+Checking 8 stacked vias:0% 10% 20% 30% 50% 60% 70% 80% 100%
+Finish removing all dangling or floating wires and vias.
+Commiting wires and vias.
+Committed 8 wires.
+Committing wires takes 0.00 seconds.
+Committed 8 vias.
+Committed 0 wires for via creation.
+Committing vias takes 0.00 seconds.
+Overall PG creation runtime: 0 seconds.
+Successfully compiled PG.
+Overall runtime: 0 seconds.
+1
+icc2_shell> #######################################missing_vias####################################
+icc2_shell> create_pg_mesh_pattern straps_vddvss -layers {
+{{horizontal_layer : M9}{width : 3}{pitch : 20}{spacing : interleaving}{offset : 1}}
+{{vertical_layer : M8}{width : 3}{pitch : 20}{spacing : interleaving}{offset : 1}}}
+Successfully create mesh pattern straps_vddvss.
+1
+icc2_shell> set_pg_strategy mesh_vddvss -core                                 -pattern {{name : straps_vddvss}{nets : {VDD VSS}}}                                 -extension {{stop:design_boundary_and_generate_pin}}
+Successfully set PG strategy mesh_vddvss.
+icc2_shell> compile_pg -strategies mesh_vddvss
+Sanity check for inputs.
+No strategy-level via rule is specified, the default rule will be applied.
+Automatic PG net connection through connect_pg_net is disabled.
+Loading library and design information.
+Updating PG strategies.
+Updating strategy mesh_vddvss.
+Number of Standard Cells: 0
+Number of Hard Macros: 0
+Number of Pads: 0
+Creating straps and vias in power plan.
+Creating wire shapes for strategies mesh_vddvss .
+User specified offset for layer M9 in pattern straps_vddvss may result in some wires (partially) out of routing area boundary.
+User specified offset for layer M8 in pattern straps_vddvss may result in some wires (partially) out of routing area boundary.
+Creating wire shapes runtime: 0 seconds
+Blockage cutting and DRC fixing for wire shapes for strategies mesh_vddvss .
+Check and fix DRC for 130 wires for strategy mesh_vddvss.
+Checking DRC for 130 wires:0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100%
+Creating 130 wires after DRC fixing.
+Wire DRC checking runtime 0.00 seconds.
+Creating via shapes for strategies mesh_vddvss .
+Working on strategy mesh_vddvss.
+Number of detected intersections: 2113
+Total runtime of via shapes creation: 0 seconds
+Check and fix DRC for 2113 stacked vias for strategy mesh_vddvss.
+Checking DRC for 2113 stacked vias:0% 5% 10% 15% 20% 25% 30% 35% 40% 45% 50% 55% 60% 65% 70% 75% 80% 85% 90% 95% 100%
+Runtime of via DRC checking for strategy mesh_vddvss: 0.00 seconds.
+Creating via connection between strategies and existing shapes.
+Check and fix DRCs for 260 stacked vias.
+Checking DRC for 260 stacked vias:0% 5% 10% 15% 20% 25% 30% 35% 40% 45% 50% 55% 60% 65% 70% 75% 80% 85% 90% 95% 100%
+Via DRC checking runtime 0.00 seconds.
+via connection runtime: 0 seconds.
+Removing dangling/floating wire/vias after DRC check.
+Start iteration 1:
+Checking potential dangling/floating power plan wires.
+Checking dangling/floating vias inside strategy mesh_vddvss.
+Checking 2113 stacked vias:0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100%
+Checking dangling/floating vias between strategies and existing shapes.
+Checking 260 stacked vias:0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100%
+Finish removing all dangling or floating wires and vias.
+Commiting wires and vias.
+Committed 390 wires.
+Created 260 pins at design boundary.
+Committing wires takes 0.00 seconds.
+Committed 2373 vias.
+Committed 0 wires for via creation.
+Committing vias takes 0.00 seconds.
+Overall PG creation runtime: 0 seconds.
+Successfully compiled PG.
+Overall runtime: 0 seconds.
+1
+icc2_shell> 
+Begin building search trees for block mips_16.dlib:mips_16_powerplan.design
+Done building search trees for block mips_16.dlib:mips_16_powerplan.design (time 0s)
+icc2_shell> ###############################rail####################################
+icc2_shell> connect_pg_net -net VDD [get_pins -hierarchical */VDD]
+icc2_shell> connect_pg_net -net VSS [get_pins -hierarchical */VSS]
+icc2_shell> set rail_startegie rails_M1
+rails_M1
+icc2_shell> set rail_pattern   std_cell_rail
+std_cell_rail
+icc2_shell> set rail_layer     M1
+M1
+icc2_shell> set rail_width     0.16
+0.16
+icc2_shell> create_pg_std_cell_conn_pattern $rail_pattern -layers $rail_layer                                   -rail_width $rail_width
+Successfully create standard cell rail pattern std_cell_rail.
+icc2_shell> set_pg_strategy $rail_startegie -core   -pattern {{name : std_cell_rail}{nets : {VDD VSS}}}
+Successfully set PG strategy rails_M1.
+icc2_shell> compile_pg  -strategies $rail_startegie
+Sanity check for inputs.
+No strategy-level via rule is specified, the default rule will be applied.
+Automatic PG net connection through connect_pg_net is disabled.
+Loading library and design information.
+Updating PG strategies.
+Updating strategy rails_M1.
+Number of Standard Cells: 0
+Number of Hard Macros: 0
+Number of Pads: 0
+Creating standard cell rails.
+Creating standard cell rails for strategy rails_M1.
+DRC checking and fixing for standard cell rail strategy rails_M1.
+Checking DRC for 230 wires:0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100%
+Creating 230 wires after DRC fixing.
+Wire DRC checking runtime 0.00 seconds.
+Creating via connection between strategies and existing shapes.
+Check and fix DRCs for 7475 stacked vias.
+Checking DRC for 7475 stacked vias:0% 5% 10% 15% 20% 25% 30% 35% 40% 45% 50% 55% 60% 65% 70% 75% 80% 85% 90% 95% 100%
+Via DRC checking runtime 3.00 seconds.
+via connection runtime: 3 seconds.
+Removing dangling/floating wire/vias after DRC check.
+Start iteration 1:
+Checking potential dangling/floating power plan wires.
+Checking dangling/floating vias between strategies and existing shapes.
+Checking 7475 stacked vias:0% 10% 20% 30% 40% 50% 60% 70% 80% 90% 100%
+Finish removing all dangling or floating wires and vias.
+Commiting wires and vias.
+Committed 230 wires.
+Committing wires takes 0.00 seconds.
+Committed 52325 vias.
+Committed 0 wires for via creation.
+Committing vias takes 0.00 seconds.
+Overall PG creation runtime: 3 seconds.
+Successfully compiled PG.
+Overall runtime: 3 seconds.
+1
+icc2_shell> ############################CHECK####################################
+icc2_shell> check_pg_drc
+Command check_pg_drc started  at Sat Aug 29 03:52:32 2026
+Command check_pg_drc finished at Sat Aug 29 03:52:33 2026
+CPU usage for check_pg_drc: 1.17 seconds ( 0.00 hours)
+Elapsed time for check_pg_drc: 1.18 seconds ( 0.00 hours)
+No errors found.
+icc2_shell> check_pg_connectivity
+Loading cell instances...
+Number of Standard Cells: 14812
+Number of Macro Cells: 0
+Number of IO Pad Cells: 0
+Number of Blocks: 0
+Loading P/G wires and vias...
+Number of VDD Wires: 183
+Number of VDD Vias: 26916
+Number of VDD Terminals: 128
+Number of VSS Wires: 185
+Number of VSS Vias: 27790
+Number of VSS Terminals: 132
+**************Verify net VDD connectivity*****************
+  Number of floating wires: 0
+  Number of floating vias: 0
+  Number of floating std cells: 14812
+  Number of floating hard macros: 0
+  Number of floating I/O pads: 0
+  Number of floating terminals: 0
+  Number of floating hierarchical blocks: 0
+************************************************************
+**************Verify net VSS connectivity*****************
+  Number of floating wires: 0
+  Number of floating vias: 0
+  Number of floating std cells: 14812
+  Number of floating hard macros: 0
+  Number of floating I/O pads: 0
+  Number of floating terminals: 0
+  Number of floating hierarchical blocks: 0
+************************************************************
+Overall runtime: 0 seconds.
+icc2_shell> check_pg_missing_vias
+Check net VDD vias...
+Number of missing vias: 0
+Checking net VDD vias took 0 seconds.
+Check net VSS vias...
+Number of missing vias: 0
+Checking net VSS vias took 0 seconds.
+Overall runtime: 0 seconds.
+icc2_shell> ########################handel################################3
+icc2_shell> sh rm -rf ../results/worst
+icc2_shell> sh mkdir -p ../results/worst
+icc2_shell> sh mkdir -p ../results/worst/reports
+icc2_shell> sh mkdir -p ../results/worst/outputs
+icc2_shell> ############################create_dlib########################
+icc2_shell> check_pg_drc            > ../results/worst/reports/drc.rpt
+icc2_shell> check_pg_connectivity   > ../results/worst/reports/connectivity.rpt
+icc2_shell> check_pg_missing_vias   > ../results/worst/reports/missing_vias.rpt
+icc2_shell> ##################save##########################
+icc2_shell> write_def                        ../results/worst/outputs/${design}_${current_stage}.def
+****************************************
+Report : Data Mismatches
+Version: O-2018.06-SP1
+Date   : Sat Aug 29 03:52:39 2026
+****************************************
+No mismatches exist on the design.
+---------------------------------------
+Number of Written DEF Constructs
+---------------------------------------
+VERSION                        : 1
+DIVIDERCHAR                    : 1
+BUSBITCHARS                    : 1
+DESIGN                         : 1
+UNITS                          : 1
+PROPERTYDEFINITIONS            : 1
+DIEAREA                        : 1
+ROW                            : 229
+TRACKS                         : 18
+VIAS                           : 10
+COMPONENTS                     : 14812
+PINS                           : 39
+PINPROPERTIES                  : 37
+SPECIALNETS                    : 2
+NETS                           : 14863
+1
+icc2_shell> write_verilog     -include {all} ../results/worst/outputs/${design}_${current_stage}.v
+1
+icc2_shell> save_block -as ${design}_${current_stage} ${design}.dlib:${design}_${current_stage}.design
+Information: Saving block 'mips_16.dlib:mips_16_powerplan.design'
+1
+icc2_shell> exit 1
+Maximum memory usage for this session: 302.30 MB
+CPU usage for this session:     30 seconds (  0.01 hours)
+Elapsed time for this session:    134 seconds (  0.04 hours)
+Thank you for using IC Compiler II.
+
