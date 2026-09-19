@@ -1,0 +1,144 @@
+#########################setup#########################
+
+set project_dir "/mnt/hgfs/VM_shared/ITI/ASIC_mips_16"
+set lib_path "/home/ICer/Downloads/Lib"
+set dlib_dir "/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/pnr/2_design_lib/results/worst/outputs"
+set design "mips_16"
+
+set prev_stage    "powerplan"
+set current_stage "placement"
+
+########################open########################
+
+open_block ${dlib_dir}/${design}.dlib:${design}_${prev_stage}.design
+copy_block -from_block ${design}.dlib:${design}_${prev_stage}.design -to_block ${design}_${current_stage}.design
+current_block ${design}_${current_stage}.design
+start_gui
+
+############################preplacement########################
+
+check_pg_connectivity -check_std_cell_pins none
+check_pg_drc -ignore_std_cells
+check_pg_missing_vias
+check_design -checks pre_placement_stage
+
+set_app_options -name place.legalize.enable_advanced_legalizer \
+                -value true
+
+set_app_options -name place.legalize.legalizer_search_and_repair \
+                -value true
+
+set_app_options -name place.coarse.auto_density_control \
+                -value true
+
+set_app_options -name place.coarse.auto_timing_control \
+                -value true
+
+set_app_options -name place.coarse.legalizer_driven_placement \
+                -value true
+
+set_app_options -list {place.coarse.continue_on_missing_scandef {true}}
+
+set_app_options -list {place.coarse.detect_detours {true}}
+
+set_app_options -list {opt.tie_cell.max_fanout 1}
+set_app_options -list {opt.common.max_fanout {10}}
+set_app_options -list {opt.timing.effort {high}}
+set_app_options -list {place_opt.congestion.effort {high}}
+set_app_options -list {place.coarse.max_density {0.3}}
+
+set_app_options -name opt.common.user_instance_name_prefix \
+                -value "PLACE_"
+
+
+report_ideal_network 
+remove_ideal_network {fun_reset scan_reset test_mode}
+report_ideal_network 
+
+#################################placement####################################
+
+create_placement -effort high -timing_driven \
+-congestion -congestion_effort high 
+
+legalize_placement -incremental
+
+report_net_fanout -threshold 20
+
+report_attributes -nosplit  [get_lib_cell */*TIEH*] > TIEH_attr.rpt
+
+set_attribute [get_lib_cells */*TIEH*] dont_touch false
+set_attribute [get_lib_cells */*TIEL*] dont_touch false
+set_attribute [get_lib_cells */*TIEL*] dont_use false
+set_attribute [get_lib_cells */*TIEH*] dont_use false
+
+################################placement_optmization#######################
+
+place_opt
+
+sizeof_collection [get_cells "PLACE_*"]
+###########################################################
+get_lib_cell */NAND*
+
+add_spare_cells -num_cells {
+    NAND2X1_HVT 4
+    INVX1_HVT   4
+    OR2X1_HVT   3
+    SDFFX1_HVT  3
+    MUX21X1_HVT 4
+} \
+-cell_name SpareCell \
+-random_distribution \
+-input_pin_connect_type tie_low
+
+set spare_cells [get_cells "*SpareCell*"]
+
+spread_spare_cells -cells $spare_cells
+
+place_eco_cells -cells $spare_cells -legalize_only
+#####################################################################
+set tie_cells_high [get_lib_cells */TIEH*]
+set tie_cells_high $tie_cells_high
+set_dont_touch $spare_cells
+set tie_cells_low  [get_lib_cells */TIEL*]
+set tie_cells_high [get_lib_cells */TIEH*]
+set_attribute [get_lib_cells */TIEH*] dont_touch false
+add_tie_cells -objects $spare_cells \
+              -tie_low_lib_cells $tie_cells_low \
+              -tie_high_lib_cells $tie_cells_high \
+              -legalize
+#####################################################################
+
+
+connect_pg_net -net "VDD" [get_pins -hierarchical */VDD]
+connect_pg_net -net "VSS" [get_pins -hierarchical */VSS]
+
+
+########################handel################################3
+
+sh rm -rf ../results/worst
+sh mkdir -p ../results/worst
+sh mkdir -p ../results/worst/reports
+sh mkdir -p ../results/worst/outputs
+#############################reports#####################
+
+report_cell             > ../results/worst/reports/cells.rpt
+report_nets             > ../results/worst/reports/nets.rpt
+report_qor              > ../results/worst/reports/qor.rpt
+report_timing           > ../results/worst/reports/timing.rpt
+report_timing -delay_type max -max_paths 2 > ../results/worst/reports/setup.rpt
+report_utilization      > ../results/worst/reports/utilization.rpt
+get_placement_blockages > ../results/worst/reports/plac_blockage.rpt
+check_pg_drc            > ../results/worst/reports/drc.rpt
+check_pg_connectivity   > ../results/worst/reports/connectivity.rpt
+check_pg_missing_vias   > ../results/worst/reports/missing_vias.rpt
+
+
+##################save##########################
+
+write_def                        ../results/worst/outputs/${design}_${current_stage}.def
+write_verilog     -include {all} ../results/worst/outputs/${design}_${current_stage}.v
+write_sdc         -output     ../results/worst/outputs/${design}_${current_stage}.sdc
+
+save_block -as ${design}_${current_stage} ${design}.dlib:${design}_${current_stage}.design
+
+#open_block ${dlib_dir}/${design}.dlib:${design}_${current_stage}.design

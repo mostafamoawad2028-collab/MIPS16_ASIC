@@ -1,0 +1,67 @@
+<Database>
+Name/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/pnr/5_placement/run/check_design.ems
+Creation TimeSat Aug 29 03:55:22 2026
+Modified TimeSat Aug 29 03:55:23 2026
+Design Namemips_16_placement
+Library Namemips_16.dlib
+</Database>
+<RuleCount>
+DFT-0111
+MV-0272
+TCK-00148
+</RuleCount>
+<UserDefinedRules>
+</UserDefinedRules>
+<Messages>
+DFT-011reason10
+MV-027tieNet*Logic0*1[ get_net { *Logic0* } ]8
+MV-027tieNetinstrucion_memory/*Logic1*1[ get_net { instrucion_memory/*Logic1* } ]8
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__15_/D1[ get_pin { reg_file/reg_array_reg_0__15_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__15_/RSTB1[ get_pin { reg_file/reg_array_reg_0__15_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__14_/D1[ get_pin { reg_file/reg_array_reg_0__14_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__14_/RSTB1[ get_pin { reg_file/reg_array_reg_0__14_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__13_/D1[ get_pin { reg_file/reg_array_reg_0__13_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__13_/RSTB1[ get_pin { reg_file/reg_array_reg_0__13_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__12_/D1[ get_pin { reg_file/reg_array_reg_0__12_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__12_/RSTB1[ get_pin { reg_file/reg_array_reg_0__12_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__11_/D1[ get_pin { reg_file/reg_array_reg_0__11_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__11_/RSTB1[ get_pin { reg_file/reg_array_reg_0__11_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__10_/D1[ get_pin { reg_file/reg_array_reg_0__10_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__10_/RSTB1[ get_pin { reg_file/reg_array_reg_0__10_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__9_/D1[ get_pin { reg_file/reg_array_reg_0__9_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__9_/RSTB1[ get_pin { reg_file/reg_array_reg_0__9_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__8_/D1[ get_pin { reg_file/reg_array_reg_0__8_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__8_/RSTB1[ get_pin { reg_file/reg_array_reg_0__8_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__7_/D1[ get_pin { reg_file/reg_array_reg_0__7_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__7_/RSTB1[ get_pin { reg_file/reg_array_reg_0__7_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__6_/D1[ get_pin { reg_file/reg_array_reg_0__6_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__6_/RSTB1[ get_pin { reg_file/reg_array_reg_0__6_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__5_/D1[ get_pin { reg_file/reg_array_reg_0__5_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__5_/RSTB1[ get_pin { reg_file/reg_array_reg_0__5_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__4_/D1[ get_pin { reg_file/reg_array_reg_0__4_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__4_/RSTB1[ get_pin { reg_file/reg_array_reg_0__4_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__3_/D1[ get_pin { reg_file/reg_array_reg_0__3_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__3_/RSTB1[ get_pin { reg_file/reg_array_reg_0__3_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__2_/D1[ get_pin { reg_file/reg_array_reg_0__2_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__2_/RSTB1[ get_pin { reg_file/reg_array_reg_0__2_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__1_/D1[ get_pin { reg_file/reg_array_reg_0__1_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__1_/RSTB1[ get_pin { reg_file/reg_array_reg_0__1_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__0_/D1[ get_pin { reg_file/reg_array_reg_0__0_/D } ]6modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointreg_file/reg_array_reg_0__0_/RSTB1[ get_pin { reg_file/reg_array_reg_0__0_/RSTB } ]6modedefault1[ get_modes { default } ]39reasondisabled check10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[15]1[ get_port { alu_result[15] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[14]1[ get_port { alu_result[14] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[13]1[ get_port { alu_result[13] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[12]1[ get_port { alu_result[12] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[11]1[ get_port { alu_result[11] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[10]1[ get_port { alu_result[10] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[9]1[ get_port { alu_result[9] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[8]1[ get_port { alu_result[8] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[7]1[ get_port { alu_result[7] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[6]1[ get_port { alu_result[6] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[5]1[ get_port { alu_result[5] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[4]1[ get_port { alu_result[4] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[3]1[ get_port { alu_result[3] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[2]1[ get_port { alu_result[2] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[1]1[ get_port { alu_result[1] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+TCK-001cornerdefault1[ get_corners { default } ]40endpointalu_result[0]1[ get_port { alu_result[0] } ]7modedefault1[ get_modes { default } ]39reasoncase constant10
+</Messages>

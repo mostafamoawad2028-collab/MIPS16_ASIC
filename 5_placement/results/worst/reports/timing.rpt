@@ -1,0 +1,55 @@
+****************************************
+Report : timing
+        -path_type full
+        -delay_type max
+        -max_paths 1
+        -report_by design
+Design : mips_16
+Version: O-2018.06-SP1
+Date   : Sat Aug 29 04:03:47 2026
+****************************************
+
+  Startpoint: pc_current_reg_7_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Endpoint: pc_current_reg_15_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: fun_clk
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock fun_clk (rise edge)                        0.00      0.00
+  clock network delay (ideal)                      0.00      0.00
+
+  pc_current_reg_7_/CLK (DFFARX1_HVT)              0.00      0.00 r
+  pc_current_reg_7_/QN (DFFARX1_HVT)               0.93      0.93 f
+  U346/ZN (INVX0_HVT)                              0.20      1.13 r
+  add_64/U77/ZN (INVX0_HVT)                        0.32      1.46 f
+  add_64/U18/ZN (INVX0_HVT)                        0.23      1.68 r
+  add_64/U70/QN (NAND2X1_HVT)                      0.36      2.04 f
+  add_64/U52/QN (NOR2X0_HVT)                       0.29      2.33 r
+  add_64/U3/QN (NAND2X1_HVT)                       0.38      2.71 f
+  add_64/U2/QN (NOR2X2_HVT)                        0.40      3.10 r
+  add_64/U83/QN (NAND2X1_HVT)                      0.48      3.58 f
+  add_64/U7/QN (NOR2X0_HVT)                        0.37      3.95 r
+  add_64/U108/Q (XOR2X1_HVT)                       0.68      4.63 r
+  U221/QN (NAND2X0_HVT)                            0.38      5.01 f
+  U223/QN (NAND2X0_HVT)                            0.28      5.29 r
+  pc_current_reg_15_/D (DFFARX2_HVT)               0.00      5.29 r
+  data arrival time                                          5.29
+
+  clock fun_clk (rise edge)                       10.00     10.00
+  clock network delay (ideal)                      0.00     10.00
+  pc_current_reg_15_/CLK (DFFARX2_HVT)             0.00     10.00 r
+  clock uncertainty                               -0.45      9.55
+  library setup time                              -0.89      8.66
+  data required time                                         8.66
+  ------------------------------------------------------------------------
+  data required time                                         8.66
+  data arrival time                                         -5.29
+  ------------------------------------------------------------------------
+  slack (MET)                                                3.37
+
+
+1
