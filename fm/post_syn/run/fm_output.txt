@@ -1,0 +1,292 @@
+[ICer@IC_EDA /mnt/hgfs/VM_shared/ITI/ASIC_mips_16/fm/post_syn/run]$fm_shell
+
+                                 Formality (R)
+
+               Version L-2016.03-SP1 for linux64 - Apr 13, 2016 
+
+                    Copyright (c) 1988 - 2016 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+
+  ** Highlights of Formality (R) Version L-2016.03 **
+   - New alternate verification strategies for resolving inconclusive verifications
+   - Automation for deploying alternate strategies
+   - New command to export the mapping of reference to implementation registers
+   - New capability to combine PG and low power information from db libraries with Verilog functional models
+
+   * Please refer to the Formality Release Notes for details and additional enhancements
+
+Build: 4031317
+Hostname: IC_EDA (RHEL64)
+Current time: Fri Aug 28 23:46:38 2026
+
+Loading db file '/home/synopsys/Formality/Formality/libraries/syn/gtech.db'
+fm_shell (setup)> ##########################setup#########################
+fm_shell (setup)> 
+fm_shell (setup)> lappend search_path "/home/ICer/Downloads/Lib/synopsys/models"
+/home/ICer/Downloads/Lib/synopsys/models
+fm_shell (setup)> lappend search_path "/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl"
+/home/ICer/Downloads/Lib/synopsys/models /mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl
+fm_shell (setup)> 
+fm_shell (setup)> #########################setup##########################
+fm_shell (setup)> 
+fm_shell (setup)> set top_module mips_16
+mips_16
+fm_shell (setup)> set synopsys_auto_setup true
+true
+fm_shell (setup)> set_svf "/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/run/${top_module}.svf"
+SVF set to '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/run/mips_16.svf'.
+1
+fm_shell (setup)> 
+fm_shell (setup)> ################################ref############################################
+fm_shell (setup)> 
+fm_shell (setup)> set SSLIB_HVT "saed90nm_max_hvt.db"
+saed90nm_max_hvt.db
+fm_shell (setup)> read_db -container ref [list $SSLIB_HVT]
+Loading db file '/home/ICer/Downloads/Lib/synopsys/models/saed90nm_max_hvt.db'
+Created container 'ref'
+Current container set to 'ref'
+1
+fm_shell (setup)> read_verilog -container ref "alu.v"
+No target library specified, default is WORK
+Initializing DesignWare ...
+Initialization Complete
+Loading verilog file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/alu.v'
+1
+fm_shell (setup)> read_verilog -container ref "ALUControl.v"
+No target library specified, default is WORK
+Loading verilog file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/ALUControl.v'
+1
+fm_shell (setup)> read_verilog -container ref "control.v"
+No target library specified, default is WORK
+Loading verilog file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/control.v'
+1
+fm_shell (setup)> read_verilog -container ref "data_memory.v"
+No target library specified, default is WORK
+Loading verilog file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/data_memory.v'
+Warning: INITIAL statements are not supported. (File: /mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/data_memory.v Line: 19)  (FMR_VLOG-101)
+1
+fm_shell (setup)> read_verilog -container ref "instr_mem.v"
+No target library specified, default is WORK
+Loading verilog file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/instr_mem.v'
+Warning: INITIAL statements are not supported. (File: /mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/instr_mem.v Line: 19)  (FMR_VLOG-101)
+1
+fm_shell (setup)> read_verilog -container ref "JR_Control.v"
+No target library specified, default is WORK
+Loading verilog file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/JR_Control.v'
+1
+fm_shell (setup)> read_verilog -container ref "Mux2x1.v"
+No target library specified, default is WORK
+Loading verilog file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/Mux2x1.v'
+1
+fm_shell (setup)> read_verilog -container ref "register_file.v"
+No target library specified, default is WORK
+Loading verilog file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/register_file.v'
+1
+fm_shell (setup)> read_verilog -container ref "mips_16.v"
+No target library specified, default is WORK
+Loading verilog file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/mips_16.v'
+Loading include file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/data_memory.v'
+Warning: INITIAL statements are not supported. (File: /mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/data_memory.v Line: 19)  (FMR_VLOG-101)
+Loading include file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/ALUControl.v'
+Loading include file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/control.v'
+Loading include file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/JR_Control.v'
+Loading include file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/register_file.v'
+Loading include file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/instr_mem.v'
+Warning: INITIAL statements are not supported. (File: /mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/instr_mem.v Line: 19)  (FMR_VLOG-101)
+Loading include file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/alu.v'
+Loading include file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/rtl/Mux2x1.v'
+Information: Loading new version of design '/WORK/data_memory' into container 'ref' (FM-548)
+Information: Loading new version of design '/WORK/alu' into container 'ref' (FM-548)
+Information: Loading new version of design '/WORK/ALUControl' into container 'ref' (FM-548)
+Information: Loading new version of design '/WORK/JR_Control' into container 'ref' (FM-548)
+Information: Loading new version of design '/WORK/register_file' into container 'ref' (FM-548)
+Information: Loading new version of design '/WORK/control' into container 'ref' (FM-548)
+Information: Loading new version of design '/WORK/instr_mem' into container 'ref' (FM-548)
+Information: Loading new version of design '/WORK/Mux2x1' into container 'ref' (FM-548)
+1
+fm_shell (setup)> 
+fm_shell (setup)> set_reference_design mips_16
+Reference design set to 'ref:/WORK/mips_16'
+1
+fm_shell (setup)> set_top mips_16
+Setting top design to 'ref:/WORK/mips_16'
+Status:   Elaborating design mips_16   ...  
+Status:   Elaborating design Mux2x1   ...  
+Status:   Elaborating design instr_mem   ...  
+Status:   Elaborating design control   ...  
+Status:   Elaborating design register_file   ...  
+Status:   Elaborating design JR_Control   ...  
+Status:   Elaborating design ALUControl   ...  
+Status:   Elaborating design alu   ...  
+Status:   Elaborating design data_memory   ...  
+Status:  Implementing inferred operators...
+
+************ Library Checking Summary ************
+Warning:  60 unlinked power cell(s) with no power down function on an ff or latch.
+        Use 'report_libraries -defects all' for more details.
+**************************************************
+
+Top design successfully set to 'ref:/WORK/mips_16'
+Reference design set to 'ref:/WORK/mips_16'
+1
+fm_shell (setup)> 
+fm_shell (setup)> ################################imp##################
+fm_shell (setup)> 
+fm_shell (setup)> read_db -container imp [list $SSLIB_HVT]
+Loading db file '/home/ICer/Downloads/Lib/synopsys/models/saed90nm_max_hvt.db'
+Created container 'imp'
+Current container set to 'imp'
+1
+fm_shell (setup)> read_verilog -container imp -netlist "/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/results/worst/outputs/${top_module}.v" 
+No target library specified, default is WORK
+Loading verilog file '/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/results/worst/outputs/mips_16.v'
+1
+fm_shell (setup)> 
+fm_shell (setup)> set_implementation_design mips_16
+Implementation design set to 'imp:/WORK/mips_16'
+1
+fm_shell (setup)> set_top mips_16
+Setting top design to 'imp:/WORK/mips_16'
+Status:  Implementing inferred operators...
+
+************ Library Checking Summary ************
+Warning:  60 unlinked power cell(s) with no power down function on an ff or latch.
+        Use 'report_libraries -defects all' for more details.
+**************************************************
+
+Top design successfully set to 'imp:/WORK/mips_16'
+Implementation design set to 'imp:/WORK/mips_16'
+1
+fm_shell (setup)> 
+fm_shell (setup)> ###############################test#########################
+fm_shell (setup)> 
+fm_shell (setup)> set_constant ref:/WORK/*/test_mode 0
+Set 'ref:/WORK/mips_16/test_mode' to constant 0
+1
+fm_shell (setup)> set_constant imp:/WORK/*/test_mode 0
+Set 'imp:/WORK/mips_16/test_mode' to constant 0
+1
+fm_shell (setup)> 
+fm_shell (setup)> match
+Reference design is 'ref:/WORK/mips_16'
+Implementation design is 'imp:/WORK/mips_16'
+Status:  Checking designs...
+    Warning: 256 (3) undriven nets found in reference (implementation) design; see formality.log for list (FM-399)
+Status:  Building verification models...
+Status:  Processing Guide Commands...
+
+***************************** Guidance Summary *****************************
+                                         Status
+Command                 Accepted   Rejected  Unsupported  Unprocessed  Total
+----------------------------------------------------------------------------
+change_names        :          3          0          0          0          3
+environment         :          6          0          0          0          6
+instance_map        :          8          0          0          0          8
+mark                :          8          0          0          0          8
+transformation
+   map              :          5          0          0          0          5
+   share            :          1          0          0          0          1
+   tree             :          1          0          0          0          1
+uniquify            :          1          0          0          0          1
+
+SVF files read:
+      /mnt/hgfs/VM_shared/ITI/ASIC_mips_16/syn/run/mips_16.svf
+
+SVF files produced:
+  /mnt/hgfs/VM_shared/ITI/ASIC_mips_16/fm/post_syn/run/formality_svf/
+    svf.txt
+****************************************************************************
+
+Status:  Matching...
+    
+*********************************** Matching Results ***********************************    
+ 47 Compare points matched by name    
+ 0 Compare points matched by signature analysis    
+ 0 Compare points matched by topology    
+ 3 Matched primary inputs, black-box outputs    
+ 0(0) Unmatched reference(implementation) compare points    
+ 0(0) Unmatched reference(implementation) primary inputs, black-box outputs    
+****************************************************************************************
+
+1
+fm_shell (match)> 
+fm_shell (match)> set succ [verify]
+Reference design is 'ref:/WORK/mips_16'
+Implementation design is 'imp:/WORK/mips_16'
+    
+*********************************** Matching Results ***********************************    
+ 47 Compare points matched by name    
+ 0 Compare points matched by signature analysis    
+ 0 Compare points matched by topology    
+ 3 Matched primary inputs, black-box outputs    
+ 0(0) Unmatched reference(implementation) compare points    
+ 0(0) Unmatched reference(implementation) primary inputs, black-box outputs    
+****************************************************************************************
+
+Status:  Verifying...
+
+***************************** Synopsys Auto Setup Summary ******************************
+
+!!! Synopsys Auto Setup Mode was enabled. !!!
+!!! Verification results are valid assuming the following setup constraints: !!!
+
+### RTL Interpretation Setup
+   set hdlin_ignore_parallel_case false
+   set hdlin_ignore_full_case false
+   set hdlin_error_on_mismatch_message false
+   set hdlin_ignore_embedded_configuration true
+
+### Undriven Signal Handling Setup
+   set verification_set_undriven_signals synthesis
+
+### Test Logic Setup
+   set verification_verify_directly_undriven_output false
+   For details see report_dont_verify_points and report_constants
+
+
+For further details on Synopsys Auto Setup Mode: Type man synopsys_auto_setup
+****************************************************************************************
+
+
+********************************* Verification Results *********************************
+Verification SUCCEEDED
+   ATTENTION: synopsys_auto_setup mode was enabled.
+              See Synopsys Auto Setup Summary for details.
+----------------------------------------------------------
+ Reference design: ref:/WORK/mips_16
+ Implementation design: imp:/WORK/mips_16
+ 47 Passing compare points
+----------------------------------------------------------------------------------------
+Matched Compare Points     BBPin    Loop   BBNet     Cut    Port     DFF     LAT   TOTAL
+----------------------------------------------------------------------------------------
+Passing (equivalent)           0       0       0       0      32      15       0      47
+Failing (not equivalent)       0       0       0       0       0       0       0       0
+Not Compared
+  Constant reg                                                      4225       0    4225
+****************************************************************************************
+1
+fm_shell (verify)> if {!$succ} {
+? diagnose
+? analyze_points -failing
+? } else {
+? puts " successful "
+? }
+ successful 
+fm_shell (verify)> 
+fm_shell (verify)> #############################handel#######################################
+fm_shell (verify)> 
+fm_shell (verify)> sh rm -rf ../results/worst
+fm_shell (verify)> sh mkdir -p ../results/worst
+fm_shell (verify)> sh mkdir -p ../results/worst/reports
+fm_shell (verify)> sh mkdir -p ../results/worst/outputs
+fm_shell (verify)> 
+fm_shell (verify)> ##############################REPORTS##############################
+fm_shell (verify)> 
+fm_shell (verify)> report_passing_points    > ../results/worst/reports/passing_points.rpt
+fm_shell (verify)> report_failing_points    > ../results/worst/reports/failing_points.rpt
+fm_shell (verify)> report_aborted_points    > ../results/worst/reports/aborted_points.rpt
+fm_shell (verify)> report_unverified_points > ../results/worst/reports/unverified_points.rpt
+fm_shell (verify)>  
