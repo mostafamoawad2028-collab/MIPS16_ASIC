@@ -1,0 +1,22 @@
+##############################setup#######################
+
+set lib_path "/home/ICer/Downloads/Lib"
+
+create_workspace -flow exploration -technology $lib_path/process/astro/tech/astroTechFile.tf saed90_ndm
+
+set_app_options -list {lib.workspace.keep_all_physical_cells {true}}
+set_app_options -list {lib.workspace.save_design_views {true}}
+set_app_options -list {lib.workspace.save_layout_views {true}}
+set_app_options -list {design.enable_lib_cell_editing {mutable}}
+
+#########################################.db.lef##########
+
+read_db [list $lib_path/synopsys/models/saed90nm_max_hvt.db]
+read_lef [list $lib_path/lef/saed90nm_hvt.lef]
+
+#################################################do#####################
+
+group_libs
+process_workspaces -directory ../ndm
+
+
