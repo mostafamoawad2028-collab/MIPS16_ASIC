@@ -1,0 +1,484 @@
+Information: Deserialized np data
+INFO: timer data loaded from /tmp/mips_16_route_8009_260976640.timdat
+Information: The RC mode used is DR for design 'mips_16'. (NEX-022)
+---extraction options---
+Corner: default
+ late_cap_scale                : 1
+ late_res_scale                : 1
+ late_ccap_scale               : 1
+ early_cap_scale               : 1
+ early_res_scale               : 1
+ early_ccap_scale              : 1
+Global options:
+ late_ccap_threshold       : 0.003pf
+ late_ccap_ratio           : 0.03
+ reference_direction       : use_from_tluplus
+ real_metalfill_extraction : none
+ virtual_shield_extraction : true
+---app options---
+ host.max_cores                   : 4
+ extract.connect_open           : true
+ extract.incremental_extraction : true
+ extract.enable_coupling_cap    : true
+Extracting design: mips_16_route 
+Information: coupling capacitance is created explicitly. (NEX-029)
+Information: 22650 nets are successfully extracted. (NEX-028)
+Information: Advanced receiver model has not been enabled for detailed routed design. (TIM-204)
+Information: Update timing completed net estimation for all the timing graph nets (TIM-111)
+Information: Net estimation statistics: timing graph nets = 22650, routed nets = 22650, across physical hierarchy nets = 0, parasitics cached nets = 22650, delay annotated nets = 0, parasitics annotated nets = 0, multi-voltage nets = 0. (TIM-112)
+****************************************
+Report : timing
+        -path_type full
+        -delay_type max
+        -max_paths 10
+        -report_by design
+Design : mips_16
+Version: O-2018.06-SP1
+Date   : Tue Sep 15 07:05:15 2026
+****************************************
+Information: Timer using 'SI, Timing Window Analysis, CRPR'. (TIM-050)
+
+  Startpoint: pc_current_reg_7_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Endpoint: pc_current_reg_10_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: fun_clk
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock fun_clk (rise edge)                        0.00      0.00
+  clock network delay (propagated)                 5.17      5.17
+
+  pc_current_reg_7_/CLK (DFFARX1_HVT)              0.00      5.17 r
+  pc_current_reg_7_/QN (DFFARX1_HVT)               1.04      6.21 f
+  U346/ZN (INVX0_HVT)                              0.20      6.41 r
+  add_64/U77/ZN (INVX0_HVT)                        0.35      6.75 f
+  add_64/U18/ZN (INVX0_HVT)                        0.23      6.99 r
+  add_64/U70/QN (NAND2X1_HVT)                      0.35      7.33 f
+  add_64/U53/ZN (INVX0_HVT)                        0.27      7.61 r
+  add_64/U33/QN (NAND2X0_HVT)                      0.49      8.09 f
+  add_64/U75/ZN (IBUFFX2_HVT)                      0.70      8.79 r
+  add_64/U80/QN (NAND2X0_HVT)                      0.31      9.10 f
+  add_64/U94/ZN (INVX0_HVT)                        0.29      9.39 r
+  add_64/U112/Q (XOR2X1_HVT)                       0.61     10.00 r
+  U286/QN (NAND2X0_HVT)                            0.38     10.38 f
+  U260/QN (NAND2X0_HVT)                            0.28     10.66 r
+  pc_current_reg_10_/D (DFFARX1_HVT)               0.00     10.66 r
+  data arrival time                                         10.66
+
+  clock fun_clk (rise edge)                       10.00     10.00
+  clock network delay (propagated)                 5.23     15.23
+  clock reconvergence pessimism                    0.00     15.23
+  pc_current_reg_10_/CLK (DFFARX1_HVT)             0.00     15.23 r
+  clock uncertainty                               -0.45     14.78
+  library setup time                              -0.72     14.05
+  data required time                                        14.05
+  ------------------------------------------------------------------------
+  data required time                                        14.05
+  data arrival time                                        -10.66
+  ------------------------------------------------------------------------
+  slack (MET)                                                3.40
+
+
+
+  Startpoint: pc_current_reg_7_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Endpoint: pc_current_reg_11_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: fun_clk
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock fun_clk (rise edge)                        0.00      0.00
+  clock network delay (propagated)                 5.17      5.17
+
+  pc_current_reg_7_/CLK (DFFARX1_HVT)              0.00      5.17 r
+  pc_current_reg_7_/QN (DFFARX1_HVT)               1.04      6.21 f
+  U346/ZN (INVX0_HVT)                              0.20      6.41 r
+  add_64/U77/ZN (INVX0_HVT)                        0.35      6.75 f
+  add_64/U18/ZN (INVX0_HVT)                        0.23      6.99 r
+  add_64/U70/QN (NAND2X1_HVT)                      0.35      7.33 f
+  add_64/U53/ZN (INVX0_HVT)                        0.27      7.61 r
+  add_64/U33/QN (NAND2X0_HVT)                      0.49      8.09 f
+  add_64/U36/QN (NOR2X0_HVT)                       0.39      8.49 r
+  add_64/U85/QN (NAND2X0_HVT)                      0.46      8.95 f
+  add_64/U90/ZN (INVX0_HVT)                        0.28      9.23 r
+  add_64/U110/Q (XOR2X1_HVT)                       0.62      9.84 r
+  U269/QN (NAND2X0_HVT)                            0.47     10.31 f
+  U228/QN (NAND2X0_HVT)                            0.36     10.67 r
+  pc_current_reg_11_/D (DFFARX1_HVT)               0.05     10.72 r
+  data arrival time                                         10.72
+
+  clock fun_clk (rise edge)                       10.00     10.00
+  clock network delay (propagated)                 5.43     15.43
+  clock reconvergence pessimism                    0.00     15.43
+  pc_current_reg_11_/CLK (DFFARX1_HVT)             0.00     15.43 r
+  clock uncertainty                               -0.45     14.98
+  library setup time                              -0.79     14.18
+  data required time                                        14.18
+  ------------------------------------------------------------------------
+  data required time                                        14.18
+  data arrival time                                        -10.72
+  ------------------------------------------------------------------------
+  slack (MET)                                                3.46
+
+
+
+  Startpoint: pc_current_reg_6_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Endpoint: pc_current_reg_9_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: fun_clk
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock fun_clk (rise edge)                        0.00      0.00
+  clock network delay (propagated)                 5.23      5.23
+
+  pc_current_reg_6_/CLK (DFFARX1_HVT)              0.00      5.23 r
+  pc_current_reg_6_/QN (DFFARX1_HVT)               1.08      6.30 f
+  U342/ZN (INVX0_HVT)                              0.20      6.50 r
+  add_64/U74/ZN (INVX0_HVT)                        0.30      6.80 f
+  add_64/U17/QN (NOR2X0_HVT)                       0.28      7.08 r
+  add_64/U16/QN (NAND2X1_HVT)                      0.39      7.48 f
+  add_64/U5/QN (NOR2X0_HVT)                        0.43      7.91 r
+  add_64/U72/ZN (INVX0_HVT)                        0.42      8.33 f
+  add_64/U6/ZN (INVX0_HVT)                         0.23      8.56 r
+  add_64/U84/QN (NAND2X0_HVT)                      0.39      8.95 f
+  add_64/U31/ZN (INVX0_HVT)                        0.26      9.21 r
+  add_64/U100/Q (XOR2X1_HVT)                       0.60      9.80 r
+  U293/QN (NAND2X0_HVT)                            0.35     10.15 f
+  U259/QN (NAND2X0_HVT)                            0.27     10.42 r
+  pc_current_reg_9_/D (DFFARX1_HVT)                0.02     10.43 r
+  data arrival time                                         10.43
+
+  clock fun_clk (rise edge)                       10.00     10.00
+  clock network delay (propagated)                 5.23     15.23
+  clock reconvergence pessimism                    0.00     15.23
+  pc_current_reg_9_/CLK (DFFARX1_HVT)              0.00     15.23 r
+  clock uncertainty                               -0.45     14.78
+  library setup time                              -0.73     14.05
+  data required time                                        14.05
+  ------------------------------------------------------------------------
+  data required time                                        14.05
+  data arrival time                                        -10.43
+  ------------------------------------------------------------------------
+  slack (MET)                                                3.62
+
+
+
+  Startpoint: pc_current_reg_6_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Endpoint: pc_current_reg_8_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: fun_clk
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock fun_clk (rise edge)                        0.00      0.00
+  clock network delay (propagated)                 5.23      5.23
+
+  pc_current_reg_6_/CLK (DFFARX1_HVT)              0.00      5.23 r
+  pc_current_reg_6_/QN (DFFARX1_HVT)               1.08      6.30 f
+  U342/ZN (INVX0_HVT)                              0.20      6.50 r
+  add_64/U74/ZN (INVX0_HVT)                        0.30      6.80 f
+  add_64/U17/QN (NOR2X0_HVT)                       0.28      7.08 r
+  add_64/U16/QN (NAND2X1_HVT)                      0.39      7.48 f
+  add_64/U5/QN (NOR2X0_HVT)                        0.43      7.91 r
+  add_64/U72/ZN (INVX0_HVT)                        0.42      8.33 f
+  add_64/U6/ZN (INVX0_HVT)                         0.23      8.56 r
+  add_64/U81/QN (NAND2X0_HVT)                      0.35      8.91 f
+  add_64/U30/ZN (INVX0_HVT)                        0.25      9.16 r
+  add_64/U101/Q (XOR2X1_HVT)                       0.60      9.76 r
+  U279/QN (NAND2X0_HVT)                            0.36     10.12 f
+  U271/QN (NAND2X0_HVT)                            0.26     10.38 r
+  pc_current_reg_8_/D (DFFARX1_HVT)                0.00     10.38 r
+  data arrival time                                         10.38
+
+  clock fun_clk (rise edge)                       10.00     10.00
+  clock network delay (propagated)                 5.23     15.23
+  clock reconvergence pessimism                    0.00     15.23
+  pc_current_reg_8_/CLK (DFFARX1_HVT)              0.00     15.23 r
+  clock uncertainty                               -0.45     14.78
+  library setup time                              -0.72     14.06
+  data required time                                        14.06
+  ------------------------------------------------------------------------
+  data required time                                        14.06
+  data arrival time                                        -10.38
+  ------------------------------------------------------------------------
+  slack (MET)                                                3.67
+
+
+
+  Startpoint: pc_current_reg_7_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Endpoint: pc_current_reg_15_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: fun_clk
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock fun_clk (rise edge)                        0.00      0.00
+  clock network delay (propagated)                 5.17      5.17
+
+  pc_current_reg_7_/CLK (DFFARX1_HVT)              0.00      5.17 r
+  pc_current_reg_7_/QN (DFFARX1_HVT)               1.04      6.21 f
+  U346/ZN (INVX0_HVT)                              0.20      6.41 r
+  add_64/U77/ZN (INVX0_HVT)                        0.35      6.75 f
+  add_64/U18/ZN (INVX0_HVT)                        0.23      6.99 r
+  add_64/U70/QN (NAND2X1_HVT)                      0.35      7.33 f
+  add_64/U52/QN (NOR2X0_HVT)                       0.29      7.62 r
+  add_64/U3/QN (NAND2X1_HVT)                       0.38      8.00 f
+  add_64/U2/QN (NOR2X2_HVT)                        0.41      8.41 r
+  add_64/U83/QN (NAND2X1_HVT)                      0.46      8.87 f
+  add_64/U7/QN (NOR2X0_HVT)                        0.33      9.20 r
+  add_64/U108/Q (XOR2X1_HVT)                       0.65      9.85 r
+  U221/QN (NAND2X0_HVT)                            0.37     10.21 f
+  U223/QN (NAND2X0_HVT)                            0.27     10.49 r
+  pc_current_reg_15_/D (DFFARX2_HVT)               0.00     10.49 r
+  data arrival time                                         10.49
+
+  clock fun_clk (rise edge)                       10.00     10.00
+  clock network delay (propagated)                 5.40     15.40
+  clock reconvergence pessimism                    0.00     15.40
+  pc_current_reg_15_/CLK (DFFARX2_HVT)             0.00     15.40 r
+  clock uncertainty                               -0.45     14.95
+  library setup time                              -0.76     14.19
+  data required time                                        14.19
+  ------------------------------------------------------------------------
+  data required time                                        14.19
+  data arrival time                                        -10.49
+  ------------------------------------------------------------------------
+  slack (MET)                                                3.70
+
+
+
+  Startpoint: pc_current_reg_6_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Endpoint: pc_current_reg_12_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: fun_clk
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock fun_clk (rise edge)                        0.00      0.00
+  clock network delay (propagated)                 5.23      5.23
+
+  pc_current_reg_6_/CLK (DFFARX1_HVT)              0.00      5.23 r
+  pc_current_reg_6_/QN (DFFARX1_HVT)               1.08      6.30 f
+  U342/ZN (INVX0_HVT)                              0.20      6.50 r
+  add_64/U74/ZN (INVX0_HVT)                        0.30      6.80 f
+  add_64/U17/QN (NOR2X0_HVT)                       0.28      7.08 r
+  add_64/U16/QN (NAND2X1_HVT)                      0.39      7.48 f
+  add_64/U5/QN (NOR2X0_HVT)                        0.43      7.91 r
+  add_64/U72/ZN (INVX0_HVT)                        0.42      8.33 f
+  add_64/U67/Q (OR2X1_HVT)                         0.48      8.81 f
+  add_64/U109/Q (XOR2X1_HVT)                       0.57      9.38 r
+  U317/ZN (INVX0_HVT)                              0.22      9.60 f
+  U103/QN (NAND2X0_HVT)                            0.24      9.83 r
+  U102/Q (AND2X1_HVT)                              0.59     10.42 r
+  pc_current_reg_12_/D (DFFARX2_HVT)               0.01     10.43 r
+  data arrival time                                         10.43
+
+  clock fun_clk (rise edge)                       10.00     10.00
+  clock network delay (propagated)                 5.42     15.42
+  clock reconvergence pessimism                    0.00     15.42
+  pc_current_reg_12_/CLK (DFFARX2_HVT)             0.00     15.42 r
+  clock uncertainty                               -0.45     14.97
+  library setup time                              -0.72     14.25
+  data required time                                        14.25
+  ------------------------------------------------------------------------
+  data required time                                        14.25
+  data arrival time                                        -10.43
+  ------------------------------------------------------------------------
+  slack (MET)                                                3.82
+
+
+
+  Startpoint: pc_current_reg_7_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Endpoint: pc_current_reg_14_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: fun_clk
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock fun_clk (rise edge)                        0.00      0.00
+  clock network delay (propagated)                 5.17      5.17
+
+  pc_current_reg_7_/CLK (DFFARX1_HVT)              0.00      5.17 r
+  pc_current_reg_7_/QN (DFFARX1_HVT)               1.04      6.21 f
+  U346/ZN (INVX0_HVT)                              0.20      6.41 r
+  add_64/U77/ZN (INVX0_HVT)                        0.35      6.75 f
+  add_64/U18/ZN (INVX0_HVT)                        0.23      6.99 r
+  add_64/U70/QN (NAND2X1_HVT)                      0.35      7.33 f
+  add_64/U52/QN (NOR2X0_HVT)                       0.29      7.62 r
+  add_64/U3/QN (NAND2X1_HVT)                       0.38      8.00 f
+  add_64/U2/QN (NOR2X2_HVT)                        0.41      8.41 r
+  add_64/U83/QN (NAND2X1_HVT)                      0.46      8.87 f
+  add_64/U34/Q (XOR2X1_HVT)                        0.67      9.54 r
+  U333/ZN (INVX0_HVT)                              0.22      9.76 f
+  U101/Q (AND2X1_HVT)                              0.39     10.14 f
+  U305/QN (NOR2X0_HVT)                             0.20     10.34 r
+  pc_current_reg_14_/D (DFFARX2_HVT)               0.00     10.34 r
+  data arrival time                                         10.34
+
+  clock fun_clk (rise edge)                       10.00     10.00
+  clock network delay (propagated)                 5.44     15.44
+  clock reconvergence pessimism                    0.00     15.44
+  pc_current_reg_14_/CLK (DFFARX2_HVT)             0.00     15.44 r
+  clock uncertainty                               -0.45     14.99
+  library setup time                              -0.73     14.25
+  data required time                                        14.25
+  ------------------------------------------------------------------------
+  data required time                                        14.25
+  data arrival time                                        -10.34
+  ------------------------------------------------------------------------
+  slack (MET)                                                3.91
+
+
+
+  Startpoint: pc_current_reg_4_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Endpoint: pc_current_reg_7_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: fun_clk
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock fun_clk (rise edge)                        0.00      0.00
+  clock network delay (propagated)                 5.31      5.31
+
+  pc_current_reg_4_/CLK (DFFARX1_HVT)              0.00      5.31 r
+  pc_current_reg_4_/QN (DFFARX1_HVT)               1.15      6.46 f
+  add_64/U12/QN (NOR2X1_HVT)                       0.35      6.81 r
+  add_64/U11/QN (NAND2X0_HVT)                      0.44      7.25 f
+  add_64/U46/ZN (INVX0_HVT)                        0.27      7.51 r
+  add_64/U78/QN (NAND2X1_HVT)                      0.28      7.79 f
+  add_64/U82/ZN (INVX0_HVT)                        0.19      7.98 r
+  add_64/U49/QN (NAND2X1_HVT)                      0.28      8.26 f
+  add_64/U58/Q (OR2X1_HVT)                         0.47      8.74 f
+  add_64/U63/Q (XOR2X1_HVT)                        0.57      9.30 r
+  U301/QN (NAND2X0_HVT)                            0.35      9.65 f
+  U272/QN (NAND2X0_HVT)                            0.26      9.92 r
+  pc_current_reg_7_/D (DFFARX1_HVT)                0.00      9.92 r
+  data arrival time                                          9.92
+
+  clock fun_clk (rise edge)                       10.00     10.00
+  clock network delay (propagated)                 5.17     15.17
+  clock reconvergence pessimism                    0.00     15.17
+  pc_current_reg_7_/CLK (DFFARX1_HVT)              0.00     15.17 r
+  clock uncertainty                               -0.45     14.72
+  library setup time                              -0.75     13.97
+  data required time                                        13.97
+  ------------------------------------------------------------------------
+  data required time                                        13.97
+  data arrival time                                         -9.92
+  ------------------------------------------------------------------------
+  slack (MET)                                                4.05
+
+
+
+  Startpoint: pc_current_reg_7_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Endpoint: pc_current_reg_13_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: fun_clk
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock fun_clk (rise edge)                        0.00      0.00
+  clock network delay (propagated)                 5.17      5.17
+
+  pc_current_reg_7_/CLK (DFFARX1_HVT)              0.00      5.17 r
+  pc_current_reg_7_/QN (DFFARX1_HVT)               1.04      6.21 f
+  U346/ZN (INVX0_HVT)                              0.20      6.41 r
+  add_64/U77/ZN (INVX0_HVT)                        0.35      6.75 f
+  add_64/U18/ZN (INVX0_HVT)                        0.23      6.99 r
+  add_64/U70/QN (NAND2X1_HVT)                      0.35      7.33 f
+  add_64/U52/QN (NOR2X0_HVT)                       0.29      7.62 r
+  add_64/U3/QN (NAND2X1_HVT)                       0.38      8.00 f
+  add_64/U2/QN (NOR2X2_HVT)                        0.41      8.41 r
+  add_64/U8/Q (XOR2X1_HVT)                         0.69      9.10 r
+  U326/ZN (INVX0_HVT)                              0.22      9.32 f
+  U319/QN (NAND2X0_HVT)                            0.21      9.53 r
+  U262/Q (AND2X1_HVT)                              0.55     10.08 r
+  pc_current_reg_13_/D (DFFARX1_HVT)               0.00     10.08 r
+  data arrival time                                         10.08
+
+  clock fun_clk (rise edge)                       10.00     10.00
+  clock network delay (propagated)                 5.48     15.48
+  clock reconvergence pessimism                    0.00     15.48
+  pc_current_reg_13_/CLK (DFFARX1_HVT)             0.00     15.48 r
+  clock uncertainty                               -0.45     15.03
+  library setup time                              -0.70     14.34
+  data required time                                        14.34
+  ------------------------------------------------------------------------
+  data required time                                        14.34
+  data arrival time                                        -10.08
+  ------------------------------------------------------------------------
+  slack (MET)                                                4.26
+
+
+
+  Startpoint: pc_current_reg_4_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Endpoint: pc_current_reg_6_ (rising edge-triggered flip-flop clocked by fun_clk)
+  Mode: default
+  Corner: default
+  Scenario: default
+  Path Group: fun_clk
+  Path Type: max
+
+  Point                                            Incr      Path  
+  ------------------------------------------------------------------------
+  clock fun_clk (rise edge)                        0.00      0.00
+  clock network delay (propagated)                 5.31      5.31
+
+  pc_current_reg_4_/CLK (DFFARX1_HVT)              0.00      5.31 r
+  pc_current_reg_4_/QN (DFFARX1_HVT)               1.15      6.46 f
+  add_64/U12/QN (NOR2X1_HVT)                       0.35      6.81 r
+  add_64/U11/QN (NAND2X0_HVT)                      0.44      7.25 f
+  add_64/U46/ZN (INVX0_HVT)                        0.27      7.51 r
+  add_64/U78/QN (NAND2X1_HVT)                      0.28      7.79 f
+  add_64/U82/ZN (INVX0_HVT)                        0.19      7.98 r
+  add_64/U49/QN (NAND2X1_HVT)                      0.28      8.26 f
+  add_64/U59/ZN (INVX0_HVT)                        0.23      8.49 r
+  add_64/U103/Q (XOR2X1_HVT)                       0.59      9.08 r
+  U233/QN (NAND2X0_HVT)                            0.36      9.44 f
+  U185/QN (NAND2X0_HVT)                            0.29      9.73 r
+  pc_current_reg_6_/D (DFFARX1_HVT)                0.02      9.75 r
+  data arrival time                                          9.75
+
+  clock fun_clk (rise edge)                       10.00     10.00
+  clock network delay (propagated)                 5.23     15.23
+  clock reconvergence pessimism                    0.00     15.23
+  pc_current_reg_6_/CLK (DFFARX1_HVT)              0.00     15.23 r
+  clock uncertainty                               -0.45     14.78
+  library setup time                              -0.75     14.03
+  data required time                                        14.03
+  ------------------------------------------------------------------------
+  data required time                                        14.03
+  data arrival time                                         -9.75
+  ------------------------------------------------------------------------
+  slack (MET)                                                4.29
+
+
+1

@@ -1,0 +1,242 @@
+#@ # 
+#@ # Running icc2_shell Version O-2018.06-SP1 for linux64 -- Jul 17, 2018
+#@ # Date:   Tue Sep 15 06:13:39 2026
+#@ # Run by: ICer@IC_EDA
+#@ 
+
+set project_dir "/mnt/hgfs/VM_shared/ITI/ASIC_mips_16"
+set lib_path "/home/ICer/Downloads/Lib"
+set dlib_dir "/mnt/hgfs/VM_shared/ITI/ASIC_mips_16/pnr/2_design_lib/results/worst/outputs"
+set design "mips_16"
+set prev_stage    "cts"
+set current_stage "route"
+open_block ${dlib_dir}/${design}.dlib:${design}_${prev_stage}.design
+copy_block -from_block ${design}.dlib:${design}_${prev_stage}.design -to_block ${design}_${current_stage}.design
+current_block ${design}_${current_stage}.design
+start_gui
+gui_set_pref_value -category {SelectByNamePalette} -key {ObjectType} -value {Logical Cells}
+link_block
+win_set_filter -visible -class cell -filter {hard_macro_margin hard_margin route_blockage_margin soft_margin}
+win_set_filter -visible -class placement_blockage -filter {wiring} -layer {0-77}
+win_set_filter -expand_cell_types {soft_macro  }
+win_set_select_class -visible {cell port bound routing_blockage shaping_blockage pg_region pin_blockage block_shielding topology_node topology_edge core_area die_area edit_group shape via terminal fill_cell placement_blockage }
+win_set_filter -class cell -filter {cell_array hard_macro_margin hard_margin route_blockage_margin soft_margin}
+win_set_filter -class placement_blockage -filter {wiring} -layer {0-77}
+win_set_select_class {cell port bound routing_blockage shaping_blockage pg_region pin_blockage topology_node topology_edge edit_group shape via placement_blockage }
+set_host_option -max_cores 4
+check_routability
+set_ignored_layers -max M9 -min M2
+set_app_options -name route.detail.eco_max_number_of_iterations -value 10
+set_app_options -name opt.common.user_instance_name_prefix -value "ROUTE_"
+route_opt
+check_routes
+check_lvs -max_errors 0
+check_pg_drc
+sizeof_collection [get_cells "*ROUTE_*"]
+sizeof_collection [get_cells -hierarchical  "*ROUTE_*"]
+sizeof_collection [get_cells -hierarchical  "*CTS_*"]
+gui_show_map -window [gui_get_current_window -types Layout -mru] -map {cellDensityMap} -show {true}
+gui_show_map -window [gui_get_current_window -types Layout -mru] -map {cellMapUtilMap} -show {true}
+cm_density_map -reload -grid_width 5 -grid_height 5
+connect_pg_net -net "VDD" [get_pins -hierarchical */VDD]
+connect_pg_net -net "VSS" [get_pins -hierarchical */VSS]
+create_stdcell_fillers  -lib_cell [get_lib_cells */*DCAP*]                         -utilization 30                         -prefix "DECAP_"                         -post_eco
+sizeof_collection [get_cells -hierarchical  "*DECAP_*"]
+gui_show_map -window [gui_get_current_window -types Layout -mru] -map {cellDensityMap} -show {true}
+gui_scroll -window [gui_get_current_window -view] -vrel -.9
+gui_scroll -window [gui_get_current_window -view] -vrel -.2
+gui_scroll -window [gui_get_current_window -view] -location {0 *} -to {0 *}
+gui_scroll -window [gui_get_current_window -view] -hrel .2
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal9} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal8} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal6} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal5} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal4} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal3} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal2} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal1} -quiet]
+win_set_filter -visible -class routing_blockage -layer {4 7 10 13 16 19 22 25 28}
+win_set_filter -visible -class shape -filter {} -layer {4 7 10 13 16 19 22 25 28}
+win_set_filter -visible -class via -filter {} -layer {4 7 10 13 16 19 22 25 28}
+win_set_filter -visible -class terminal -filter {}  -layer {4 7 10 13 16 19 22 25 28}
+win_set_filter -class routing_blockage -layer {4 7 10 13 16 19 22 25 28}
+win_set_filter -class shape -filter {} -layer {4 7 10 13 16 19 22 25 28}
+win_set_filter -class via -filter {} -layer {4 7 10 13 16 19 22 25 28}
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+connect_pg_net -net "VDD" [get_pins -hierarchical */VDD]
+connect_pg_net -net "VSS" [get_pins -hierarchical */VSS]
+connect_pg_net -automatic
+check_routes
+remove_stdcell_fillers_with_violation
+check_routes
+set std_filers_128 "saed90nm_max_hvt/SHFILL128_HVT"
+set std_filers_64 "saed90nm_max_hvt/SHFILL64_HVT"
+set std_filers_3 "saed90nm_max_hvt/SHFILL3_HVT"
+set std_filers_2 "saed90nm_max_hvt/SHFILL2_HVT"
+set std_filers_1 "saed90nm_max_hvt/SHFILL1_HVT"
+create_stdcell_fillers  -lib_cell $std_filers_128                         -prefix "FILLER128_"                         -post_eco                         -continue_on_error
+sizeof_collections [get_cells "*FILLER*"]
+sizeof_collection [get_cells -hierarchical  "*FILLER*"]
+create_stdcell_fillers  -lib_cell $std_filers_64                         -prefix "FILLER64_"                         -post_eco                         -continue_on_error
+sizeof_collection [get_cells -hierarchical  "*FILLER*"]
+create_stdcell_fillers  -lib_cell $std_filers_3                         -prefix "FILLER3_"                         -post_eco                         -continue_on_error
+sizeof_collection [get_cells -hierarchical  "*FILLER*"]
+create_stdcell_fillers  -lib_cell $std_filers_2                         -prefix "FILLER2_"                         -post_eco                         -continue_on_error                         -rules no_1x
+gui_show_map -window [gui_get_current_window -types Layout -mru] -map {cellDensityMap} -show {false}
+gui_show_map -window [gui_get_current_window -types Layout -mru] -map {cellDensityMap} -show {false}
+gui_show_map -window [gui_get_current_window -types Layout -mru] -map {cellDensityMap} -show {true}
+gui_show_map -window [gui_get_current_window -types Layout -mru] -map {cellMapUtilMap} -show {true}
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+create_stdcell_fillers  -lib_cell $std_filers_1                         -prefix "FILLER1_"                         -post_eco                         -continue_on_error                         -rules no_1x
+cm_density_map -reload -grid_width 5 -grid_height 5
+create_stdcell_fillers  -lib_cell $std_filers_2                         -prefix "FILLER2_"                         -post_eco                         -continue_on_error                         -rules no_1x -utilization 100
+create_stdcell_fillers  -lib_cell $std_filers_1                         -prefix "FILLER1_"                         -post_eco                         -continue_on_error                         -rules no_1x -utilization 100
+sizeof_collection [get_cells -hierarchical  "*FILLER*"]
+cm_density_map -reload -grid_width 5 -grid_height 5
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+gui_scroll -window [gui_get_current_window -view] -hrel .2
+gui_scroll -window [gui_get_current_window -view] -hrel .2
+gui_scroll -window [gui_get_current_window -view] -hrel .2
+gui_scroll -window [gui_get_current_window -view] -vrel .2
+gui_scroll -window [gui_get_current_window -view] -vrel .2
+gui_scroll -window [gui_get_current_window -view] -vrel .2
+gui_scroll -window [gui_get_current_window -view] -vrel .2
+gui_scroll -window [gui_get_current_window -view] -vrel .2
+gui_scroll -window [gui_get_current_window -view] -vrel .2
+gui_scroll -window [gui_get_current_window -view] -vrel .2
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+gui_scroll -window [gui_get_current_window -view] -vrel .2
+gui_show_map -window [gui_get_current_window -types Layout -mru] -map {cellMapUtilMap} -show {false}
+check_routes
+route_eco
+check_routes
+connect_pg_net -net "VDD" [get_pins -hierarchical */VDD]
+connect_pg_net -net "VSS" [get_pins -hierarchical */VSS]
+check_lvs -max_errors 0
+check_pg_drc
+check_legality
+########################handel################################
+sh rm -rf ../results/worst
+sh mkdir -p ../results/worst
+sh mkdir -p ../results/worst/reports
+sh mkdir -p ../results/worst/outputs
+###############################reports#####################
+report_timing -delay_type max  -max_paths 10                    > ../results/worst/reports/setup.rpt
+report_timing -delay_type min  -max_paths 10                    > ../results/worst/reports/hold.rpt
+report_constraints -all_violators                                > ../results/worst/reports/constraints_violated.rpt
+report_qor                                                      > ../results/worst/reports/syn_qor.rpt
+write_def                        ../results/worst/outputs/${design}_${current_stage}.def
+write_verilog     -include {all} ../results/worst/outputs/${design}_${current_stage}.v
+write_sdc         -output     ../results/worst/outputs/${design}_${current_stage}.sdc
+save_block -as ${design}_${current_stage} ${design}.dlib:${design}_${current_stage}.design
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal1} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal2} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal3} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal4} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal5} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal6} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+win_set_filter -visible -class routing_blockage -layer {25 28}
+win_set_filter -visible -class shape -filter {} -layer {25 28}
+win_set_filter -visible -class via -filter {} -layer {25 28}
+win_set_filter -visible -class terminal -filter {}  -layer {25 28}
+win_set_filter -class routing_blockage -layer {25 28}
+win_set_filter -class shape -filter {} -layer {25 28}
+win_set_filter -class via -filter {} -layer {25 28}
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal6} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal5} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal4} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal3} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal2} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal3} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal4} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal5} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal6} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal5} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal6} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal3} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal2} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal4} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal1} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal1} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal1} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal2} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal3} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal3} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal4} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal4} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal5} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal5} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal6} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal6} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal6} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal5} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal4} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal3} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal2} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+win_set_filter -visible -class routing_blockage -layer {4 25 28}
+win_set_filter -visible -class shape -filter {} -layer {4 25 28}
+win_set_filter -visible -class via -filter {} -layer {4 25 28}
+win_set_filter -visible -class terminal -filter {}  -layer {4 25 28}
+win_set_filter -class routing_blockage -layer {4 25 28}
+win_set_filter -class shape -filter {} -layer {4 25 28}
+win_set_filter -class via -filter {} -layer {4 25 28}
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal7} -quiet]
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal6} -quiet]
+gui_set_layout_layer_visibility -toggle [get_layers -filter {mask_name == metal6} -quiet]
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+gui_scroll -window [gui_get_current_window -view] -vrel -.2
+gui_scroll -window [gui_get_current_window -view] -vrel -.2
+gui_mouse_tool -window [gui_get_current_window -types Layout -mru] -start MoveTool
+gui_mouse_tool -window [gui_get_current_window -types Layout -mru] -reset
+gui_scroll -window [gui_get_current_window -view] -vrel .2
+gui_scroll -window [gui_get_current_window -view] -hrel -.2
+gui_zoom -window [gui_get_current_window -view] -factor 0.5
+gui_zoom -window [gui_get_current_window -view] -factor 2.0
+exit 1
